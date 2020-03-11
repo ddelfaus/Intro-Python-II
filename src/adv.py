@@ -47,5 +47,5 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
-#
+# fae
 # If the user enters "q", quit the game.
