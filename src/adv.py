@@ -54,16 +54,21 @@ room['treasure'].s_to = room['narrow']
 adventurer = Player("Adventurer", room['outside'])
 print(f"Welcome to the Cave press q to quit")
 
-
 while True:
 
     print(f"{adventurer.current_room}")
-    print(f"{adventurer.current_room.description}")
+    print(f"{adventurer.current_room.description}. Press a direction or q to quit")
+
     cmd = input("->")
     # quiting
     if cmd == "q":
         print("You have quit")
         break
+    if not hasattr(adventurer.current_room, f"{cmd}_to"):
+        print("invalid command")
+        continue
+    elif getattr(adventurer.current_room, f"{cmd}_to") is None :
+        print("you cant go there")
+        continue
 
-    
-        
+    adventurer.current_room = getattr(adventurer.current_room, f"{cmd}_to")
