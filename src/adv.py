@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +50,20 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 # fae
 # If the user enters "q", quit the game.
+
+adventurer = Player("Adventurer", room['outside'])
+print(f"Welcome to the Cave press q to quit")
+
+
+while True:
+
+    print(f"{adventurer.current_room}")
+    print(f"{adventurer.current_room.description}")
+    cmd = input("->")
+    # quiting
+    if cmd == "q":
+        print("You have quit")
+        break
+
+    
+        
