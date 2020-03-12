@@ -3,6 +3,7 @@ from player import Player
 from item import Food, Item, Egg
 # Declare all the rooms
 
+
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -34,6 +35,21 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+
+rock = Item("rock", "This is a rock")
+sandwich = Food("sandwich", "This is a delicious sandwich", 100)
+stick = Item("stick", "This is a stick")
+log = Item("log", "This is a log")
+cake = Food("Cake", "This is a cake", 50)
+
+
+room['outside'].items.append(rock)
+room['foyer'].items.append(stick)
+room['foyer'].items.append(log)
+room['foyer'].items.append(rock)
+room['treasure'].items.append(cake)
+room['treasure'].items.append(sandwich)
+
 #
 # Main
 #
@@ -52,23 +68,15 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 
 
-
-rock = Item("rock", "This is a rock")
-sandwich = Food("sandwich", "This is a delicious sandwich", 100)
-
-
-
-
-
 adventurer = Player(input("Enter your name "), room['outside'])
 
 
 print(f"Welcome to the Cave {adventurer.name}press q to quit")
 print(f"{adventurer.current_room}")
 
+
 adventurer.items.append(rock)
 adventurer.items.append(sandwich)
-
 
 
 valid_directions = ("n", "s", "e", "w")
@@ -82,12 +90,10 @@ while True:
         adventurer.travel(cmd)
     elif cmd == "i":
         adventurer.print_inventory()
+    elif cmd == "c":
+        adventurer.current_room.print_available_items()
     else:
         print("I did not understand that command")
-
-
-
-
 
 
 # while True:

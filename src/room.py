@@ -9,6 +9,7 @@ class Room:
         self.s_to = None
         self.e_to = None
         self.w_to = None
+        self.items = []
 
     def __str__(self):
         return_string = "---------"
@@ -30,3 +31,12 @@ class Room:
         if self.w_to:
             exits.append("w")
         return exits
+
+    def print_available_items(self):
+        print("Items in room:")
+        if (self.items) == []: 
+                print("empty")
+        else:
+            for item in self.items:
+                print(item.name)
+           
