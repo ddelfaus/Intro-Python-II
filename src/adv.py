@@ -41,7 +41,7 @@ sandwich = Food("sandwich", "This is a delicious sandwich", 100)
 stick = Item("stick", "This is a stick")
 log = Item("log", "This is a log")
 cake = Food("Cake", "This is a cake", 50)
-
+sword = Item("sword", "This is a sword")
 
 room['outside'].items.append(rock)
 room['foyer'].items.append(stick)
@@ -75,8 +75,8 @@ print(f"Welcome to the Cave {adventurer.name}press q to quit")
 print(f"{adventurer.current_room}")
 
 
-adventurer.items.append(rock)
-adventurer.items.append(sandwich)
+adventurer.items.append(sword)
+
 
 
 valid_directions = ("n", "s", "e", "w")
@@ -92,6 +92,10 @@ while True:
         adventurer.print_inventory()
     elif cmd == "c":
         adventurer.current_room.print_available_items()
+    elif cmd == "p":
+        adventurer.get_item(adventurer.current_room.items)
+    elif cmd == "d":
+        adventurer.drop_item(adventurer.items)
     else:
         print("I did not understand that command")
 
