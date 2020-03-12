@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-
+from item import Food, Item, Egg
 # Declare all the rooms
 
 room = {
@@ -51,24 +51,59 @@ room['treasure'].s_to = room['narrow']
 # fae
 # If the user enters "q", quit the game.
 
-adventurer = Player("Adventurer", room['outside'])
-print(f"Welcome to the Cave press q to quit")
+
+
+rock = Item("rock", "This is a rock")
+sandwich = Food("sandwich", "This is a delicious sandwich", 100)
+
+
+
+
+
+adventurer = Player(input("Enter your name "), room['outside'])
+
+
+print(f"Welcome to the Cave {adventurer.name}press q to quit")
+print(f"{adventurer.current_room}")
+
+adventurer.items.append(rock)
+adventurer.items.append(sandwich)
+
+
+
+valid_directions = ("n", "s", "e", "w")
 
 while True:
-
-    print(f"{adventurer.current_room}")
-    print(f"{adventurer.current_room.description}. Press a direction or q to quit")
-
-    cmd = input("->")
-    # quiting
+    cmd = input("\n~~> ")
     if cmd == "q":
-        print("You have quit")
-        break
-    if not hasattr(adventurer.current_room, f"{cmd}_to"):
-        print("invalid command")
-        continue
-    elif getattr(adventurer.current_room, f"{cmd}_to") is None :
-        print("you cant go there")
-        continue
+        print("Goodbye!")
+        exit(0)
+    elif cmd in valid_directions:
+        adventurer.travel(cmd)
+    elif cmd == "i":
+        adventurer.print_inventory()
+    else:
+        print("I did not understand that command")
 
-    adventurer.current_room = getattr(adventurer.current_room, f"{cmd}_to")
+
+
+
+
+
+# while True:
+
+#     print(f"{adventurer.current_room.description}. Enter a direction (n,s,w,e) or q to quit")
+
+#     cmd = input("->")
+#     # quiting
+#     if cmd == "q":
+#         print("You have quit")
+#         break
+#     if not hasattr(adventurer.current_room, f"{cmd}_to"):
+#         print("invalid command")
+#         continue
+#     elif getattr(adventurer.current_room, f"{cmd}_to") is None :
+#         print("you cant go there")
+#         continue
+
+#     adventurer.current_room = getattr(adventurer.current_room, f"{cmd}_to")
