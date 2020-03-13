@@ -90,14 +90,21 @@ while True:
         adventurer.travel(cmd)
     elif cmd == "i":
         adventurer.print_inventory()
-    elif cmd == "c":
+    elif cmd == "search":
         adventurer.current_room.print_available_items()
     elif cmd == "p":
         adventurer.get_item(adventurer.current_room.items)
     elif cmd == "d":
         adventurer.drop_item(adventurer.items)
+    elif(cmd == 'take'):
+        player_input = input("\n~~> Enter Item name ")
+        adventurer.get_specific_item(adventurer.current_room.items, player_input)
+    elif(cmd == 'drop'):
+        player_input = input("\n~~> Enter Item name ")
+        adventurer.drop_specific_item(adventurer.items, player_input)
+    
     else:
-        print("I did not understand that command")
+        print("invalid command")
 
 
 # while True:

@@ -46,3 +46,24 @@ class Player:
             print(f"You dropped a {self.items[0].name}")
             self.current_room.items.append(item[0])
             self.items.remove(item[0])
+
+    def get_specific_item(self, item, thing):
+
+        for i in range(len(self.current_room.items)):
+           
+            if self.current_room.items[i].name == thing:
+                print(f"you picked up a {self.current_room.items[i].name}")
+                self.items.append(item[i])
+                self.current_room.items.remove(item[i])
+                break
+            else:
+                print("item does note exist")     
+    def drop_specific_item(self, item, thing):
+        for i in range(len(self.items)):
+            if self.items[i].name == thing:
+                print(f"You dropped a {self.items[i].name}")
+                self.current_room.items.append(item[i])
+                self.items.remove(item[i])
+                break
+            else:
+                print("item does not exist")
